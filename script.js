@@ -1,23 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("VibeDev Studio активен ⚡");
 
-  // Появление элементов при скролле
   const faders = document.querySelectorAll(".fade-in");
 
-  const appearOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-  };
+  // Обновляем видимость сразу после загрузки страницы
+  faders.forEach(el => {
+    el.classList.add("visible");
+  });
 
-  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
+  // Дополнительно плавное появление при скролле
+  window.addEventListener("scroll", () => {
+    faders.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50) {
+        el.classList.add("visible");
+      }
     });
-  }, appearOptions);
-
-  faders.forEach(fader => {
-    appearOnScroll.observe(fader);
   });
 });
