@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("VibeDev Studio активен ⚡");
 
-  // Эффект печати заголовка
-  const title = document.querySelector("header h1");
-  const text = title.textContent;
-  title.textContent = "";
-  let i = 0;
+  // Появление элементов при скролле
+  const faders = document.querySelectorAll(".fade-in");
 
-  function type() {
-    if (i < text.length) {
-      title.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 100);
-    }
-  }
+  const appearOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
 
-  type();
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
 });

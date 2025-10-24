@@ -9,12 +9,18 @@ body {
   background-color: #0a0a0a;
   color: #eaeaea;
   line-height: 1.6;
-  opacity: 0;
-  animation: fadeIn 1.5s ease forwards;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+/* --- ANIMATION --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --- HEADER --- */
@@ -58,15 +64,6 @@ header p {
   transform: scale(1.05);
 }
 
-.btn::before {
-  content: "📨";
-  transition: 0.3s;
-}
-
-.btn:hover::before {
-  transform: rotate(20deg);
-}
-
 /* --- SECTIONS --- */
 section {
   padding: 80px 20px;
@@ -81,23 +78,16 @@ h2 {
   color: #00d4ff;
 }
 
-/* --- ABOUT --- */
-#about p {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #bcbcbc;
-  max-width: 750px;
-  margin: auto;
-}
-
 /* --- PROJECTS --- */
-.projects-container {
+.projects-container,
+.services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
 
-.project-card {
+.project-card,
+.service-card {
   background: #161616;
   border-radius: 12px;
   padding: 25px;
@@ -106,35 +96,16 @@ h2 {
   transition: 0.3s;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px #00d4ff40;
-}
-
-.project-card h3 {
-  color: #00d4ff;
-  margin-bottom: 10px;
-}
-
-/* --- SERVICES --- */
-.services-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-
-.service-card {
-  background: #161616;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 15px #00d4ff15;
-  transition: 0.3s ease;
-}
-
+.project-card:hover,
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 0 25px #00d4ff40;
+}
+
+.project-card h3,
+.service-card h3 {
+  color: #00d4ff;
+  margin-bottom: 10px;
 }
 
 .price {
@@ -143,7 +114,7 @@ h2 {
   margin-top: 10px;
 }
 
-/* --- CONTACT --- */
+/* --- CONTACT & FOOTER --- */
 #contact p {
   text-align: center;
   font-size: 1.1rem;
@@ -151,11 +122,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-#contact {
-  text-align: center;
-}
-
-/* --- FOOTER --- */
 footer {
   text-align: center;
   padding: 25px;
