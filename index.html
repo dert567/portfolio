@@ -4,176 +4,234 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VibeDev Studio | Современная веб-разработка</title>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ====== ОСНОВНОЙ СТИЛЬ ====== */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
       color: #fff;
+      background: radial-gradient(circle at top, #1f1c2c, #928dab);
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
-    h2, h3, h4 { margin: 0 0 10px 0; }
-    p { margin: 0 0 15px 0; line-height: 1.6; }
-    section { padding: 60px 20px; }
-
-    /* Glass + glow эффекты */
-    .card {
+    header {
+      text-align: center;
+      padding: 120px 20px;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1), 0 8px 30px rgba(0,0,0,0.4);
-      padding: 20px;
-      flex: 1 1 250px;
-      max-width: 300px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      animation: fadeDown 1.5s ease forwards;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textGlow 3s infinite alternate;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #eee;
+    }
+
+    section {
+      padding: 80px 20px;
       text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ====== КАРТОЧКИ ====== */
+    .projects-container, .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 25px;
+      width: 280px;
       transition: all 0.4s ease;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 30px rgba(255,255,255,0.3), 0 12px 40px rgba(0,0,0,0.6);
-    }
-
-    .projects-container, .services-container, .testimonials-container, .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 10px 40px rgba(255, 99, 71, 0.3);
     }
 
     .btn {
       display: inline-block;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, #ff6f61, #ff3b2f);
+      margin-top: 25px;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      border: none;
+      border-radius: 50px;
       color: #fff;
       text-decoration: none;
-      border-radius: 50px;
       font-weight: 600;
-      box-shadow: 0 0 20px rgba(255, 99, 71, 0.4);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn:hover {
-      box-shadow: 0 0 30px rgba(255, 99, 71, 0.6);
-      transform: translateY(-3px);
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 300%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: rgba(255, 255, 255, 0.2);
+      transition: width 0.5s ease;
     }
 
-    /* Форма связи */
+    .btn:hover::after {
+      width: 120%;
+    }
+
+    /* ====== КОНТАКТ ====== */
     .contact-form {
-      max-width: 400px;
+      max-width: 420px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 20px;
     }
 
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px;
+    .contact-form input, .contact-form textarea {
+      background: rgba(255,255,255,0.1);
       border: none;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
       color: #fff;
+      padding: 12px;
       font-size: 16px;
       outline: none;
       resize: none;
     }
 
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder { color: #ddd; }
-
     .contact-form button {
-      background: linear-gradient(135deg, #ff6f61, #ff3b2f);
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
       border: none;
+      border-radius: 40px;
       padding: 12px;
-      border-radius: 50px;
+      font-size: 16px;
       color: #fff;
-      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(255,99,71,0.4);
     }
 
     .contact-form button:hover {
-      box-shadow: 0 0 30px rgba(255,99,71,0.7);
-      transform: translateY(-3px);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 99, 71, 0.4);
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background: rgba(0,0,0,0.2);
+      font-size: 14px;
+      background: rgba(0,0,0,0.3);
     }
 
-    .fade-in { opacity: 0; animation: fadeIn 1s forwards; }
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    /* ===== Адаптив ===== */
-    @media (max-width: 768px) {
-      .projects-container, .services-container, .testimonials-container, .skills-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .card {
-        max-width: 90%;
-      }
-
-      section { padding: 40px 15px; }
+    /* ====== АНИМАЦИИ ====== */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 480px) {
-      h2 { font-size: 1.5rem; }
-      h3 { font-size: 1.2rem; }
-      p { font-size: 0.95rem; }
-      .btn { padding: 10px 20px; font-size: 0.9rem; }
+    @keyframes textGlow {
+      from { text-shadow: 0 0 5px #ff6f61, 0 0 10px #ff4b2b; }
+      to { text-shadow: 0 0 20px #ff6f61, 0 0 40px #ff4b2b; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-
-  <section id="about" class="fade-in">
-    <h2>Обо мне</h2>
-    <p>Привет 👋 Меня зовут <b>Dima</b>. Я создаю современные и атмосферные сайты, которые помогают выделяться брендам и фрилансерам.</p>
-    <a href="#projects" class="btn">Посмотреть проекты ↓</a>
-  </section>
+  <header>
+    <h1>VibeDev Studio</h1>
+    <p>Создаю стильные сайты и приложения с душой ❤️</p>
+    <a href="#projects" class="btn">Мои работы ↓</a>
+  </header>
 
   <section id="projects" class="fade-in">
     <h2>Мои проекты</h2>
     <div class="projects-container">
-      <div class="card"><h3>AI Landing</h3><p>Лендинг с AI контентом</p></div>
-      <div class="card"><h3>Сайт бренда одежды</h3><p>Минимализм и стиль</p></div>
-      <div class="card"><h3>CryptoTracker</h3><p>Отслеживание криптовалют</p></div>
+      <div class="card"><h3>AI Landing</h3><p>Современный лендинг с анимацией и AI контентом.</p></div>
+      <div class="card"><h3>Music Vibe App</h3><p>Приложение с подбором музыки по настроению.</p></div>
+      <div class="card"><h3>CryptoTracker</h3><p>Отслеживание курсов криптовалют в реальном времени.</p></div>
+    </div>
+  </section>
+
+  <section id="services" class="fade-in">
+    <h2>Услуги</h2>
+    <div class="services-container">
+      <div class="card"><h3>🔥 Лендинг под ключ</h3><p>Современный, стильный и адаптивный сайт.</p><p><b>от 50 €</b></p></div>
+      <div class="card"><h3>⚡ Портфолио-сайт</h3><p>Идеален для дизайнеров, музыкантов и фрилансеров.</p><p><b>от 30 €</b></p></div>
+      <div class="card"><h3>💻 Мини-приложение</h3><p>Интерактивные проекты на JavaScript.</p><p><b>от 70 €</b></p></div>
     </div>
   </section>
 
   <section id="contact" class="fade-in">
-    <h2>Связаться со мной 💬</h2>
+    <h2>Контакты</h2>
+    <p>Оставь сообщение — и я свяжусь с тобой 🚀</p>
     <form class="contact-form" id="tgForm">
-      <input type="text" id="name" placeholder="Ваше имя" required />
-      <input type="email" id="email" placeholder="Ваш email" required />
-      <textarea id="message" placeholder="Сообщение..." rows="4" required></textarea>
+      <input type="text" id="name" placeholder="Ваше имя" required>
+      <textarea id="message" placeholder="Ваше сообщение" required></textarea>
       <button type="submit">Отправить</button>
     </form>
-    <div style="text-align:center; margin-top:20px;">
-      <a href="https://t.me/dima_dev2" target="_blank" class="btn">Написать в Telegram напрямую</a>
-    </div>
   </section>
 
   <footer>
-    <p>© 2025 VibeDev Studio. Создано с ❤️</p>
+    <p>© 2025 VibeDev Studio. Создано с ❤️ и вниманием к деталям.</p>
   </footer>
 
   <script>
+    // Анимация появления при скролле
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const onScroll = () => {
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // Отправка формы в Telegram
     const token = "8243108926:AAH3ytiNNKxmf5SYTQfMVnBO4ObQLBFKRqc";
     const chatId = "5076651431";
     const form = document.getElementById('tgForm');
@@ -181,24 +239,21 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
       const message = document.getElementById('message').value;
 
-      const text = `🧠 Новое сообщение с сайта VibeDev:\n\n👤 Имя: ${name}\n📧 Email: ${email}\n💬 Сообщение: ${message}`;
-
+      const text = `📩 Новое сообщение с сайта:\n\n👤 Имя: ${name}\n💬 Сообщение: ${message}`;
       try {
         await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text }),
+          body: JSON.stringify({ chat_id: chatId, text })
         });
         alert("✅ Сообщение отправлено!");
         form.reset();
       } catch (err) {
-        alert("❌ Ошибка при отправке. Проверьте подключение.");
+        alert("❌ Ошибка при отправке!");
       }
     });
   </script>
-
 </body>
 </html>

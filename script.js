@@ -30,3 +30,7 @@ const appearOnScroll = new IntersectionObserver(entries => {
 faders.forEach(fader => {
   appearOnScroll.observe(fader);
 });
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  document.body.style.backgroundPositionY = `${scrolled * 0.5}px`;
+});
