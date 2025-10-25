@@ -13,3 +13,20 @@ skillCards.forEach((card, index) => {
     card.style.transform = 'translateY(0)';
   }, index * 150); // 150ms задержка между каждой карточкой
 });
+// Плавное появление элементов при скролле
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOnScroll = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      appearOnScroll.unobserve(entry.target); // чтобы анимация сработала один раз
+    }
+  });
+}, {
+  threshold: 0.2 // 20% элемента видимо
+});
+
+faders.forEach(fader => {
+  appearOnScroll.observe(fader);
+});
