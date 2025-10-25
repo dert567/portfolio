@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VibeDev Studio | Современная веб-разработка</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
+    /* Базовые стили */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -16,18 +15,95 @@
       color: #fff;
       overflow-x: hidden;
     }
+
+    h2, h3, h4 {
+      margin: 0 0 10px 0;
+    }
+
+    p {
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    /* Glassmorphism для карточек */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    .projects-container, .services-container, .testimonials-container, .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    /* Кнопки с градиентом и анимацией */
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #ff6f61, #ff3b2f);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #ff3b2f, #ff6f61);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transform: translateY(-3px);
+    }
+
+    /* Карточки для разных секций */
+    .project-card, .service-card, .testimonial-card, .skill-card {
+      composes: card;
+    }
+
+    .skill-card {
+      padding: 15px;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+    }
+
+    /* Простая анимация появления */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
-
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
-  color: #fff;
-  overflow-x: hidden;
-}
-
+<body>
 
   <section id="about" class="fade-in">
     <h2>Обо мне</h2>
@@ -38,23 +114,23 @@ body {
   <section id="projects" class="fade-in">
     <h2>Мои проекты</h2>
     <div class="projects-container">
-      <div class="project-card fade-in">
+      <div class="project-card card fade-in">
         <h3>AI Landing</h3>
         <p>Современный лендинг с анимацией и AI-генерацией контента.</p>
       </div>
-      <div class="project-card fade-in">
+      <div class="project-card card fade-in">
         <h3>Сайт бренда одежды</h3>
         <p>Минималистичный лендинг с акцентом на визуал и стиль.</p>
       </div>
-      <div class="project-card fade-in">
+      <div class="project-card card fade-in">
         <h3>Сайт кафе “Taste”</h3>
         <p>Меню, бронирование столиков и адаптивный дизайн.</p>
       </div>
-      <div class="project-card fade-in">
+      <div class="project-card card fade-in">
         <h3>Music Vibe App</h3>
         <p>Мини-приложение с подбором музыки по настроению. JavaScript + API Spotify.</p>
       </div>
-      <div class="project-card fade-in">
+      <div class="project-card card fade-in">
         <h3>CryptoTracker</h3>
         <p>Веб-приложение для отслеживания криптовалют в реальном времени. HTML, CSS, JS.</p>
       </div>
@@ -64,17 +140,17 @@ body {
   <section id="services" class="fade-in">
     <h2>Услуги</h2>
     <div class="services-container">
-      <div class="service-card fade-in">
+      <div class="service-card card fade-in">
         <h3>🔥 Лендинг под ключ</h3>
         <p>Современный одностраничный сайт с анимацией и адаптивом.</p>
         <p class="price">от 50 €</p>
       </div>
-      <div class="service-card fade-in">
+      <div class="service-card card fade-in">
         <h3>⚡ Сайт-портфолио</h3>
         <p>Идеально для дизайнеров, музыкантов и фрилансеров.</p>
         <p class="price">от 30 €</p>
       </div>
-      <div class="service-card fade-in">
+      <div class="service-card card fade-in">
         <h3>💻 Мини-приложение</h3>
         <p>Небольшие интерактивные приложения на JavaScript.</p>
         <p class="price">от 70 €</p>
@@ -85,37 +161,35 @@ body {
     </div>
   </section>
 
-  <!-- Отзывы клиентов -->
   <section id="testimonials" class="fade-in">
     <h2>Отзывы клиентов 💬</h2>
     <div class="testimonials-container">
-      <div class="testimonial-card fade-in">
+      <div class="testimonial-card card fade-in">
         <p>“Dima сделал мне стильный сайт для бренда одежды — быстро и чётко! Работать с ним одно удовольствие.”</p>
         <h4>— Мария, бренд-дизайнер</h4>
       </div>
-      <div class="testimonial-card fade-in">
+      <div class="testimonial-card card fade-in">
         <p>“После лендинга от Dima у нас выросли заявки на 40%. Качественно и без лишней волокиты.”</p>
         <h4>— Алексей, владелец кафе</h4>
       </div>
-      <div class="testimonial-card fade-in">
+      <div class="testimonial-card card fade-in">
         <p>“Отличный подход! Всё понятно, красиво и с вниманием к деталям. Рекомендую 👏”</p>
         <h4>— Кира, маркетолог</h4>
       </div>
     </div>
   </section>
-     <!-- Мои технологии -->
-  
-   <section id="skills" class="fade-in">
+
+  <section id="skills" class="fade-in">
     <h2>Мои технологии ⚙️</h2>
     <div class="skills-container">
-      <div class="skill-card fade-in">💻 HTML5</div>
-      <div class="skill-card fade-in">🎨 CSS3 / SCSS</div>
-      <div class="skill-card fade-in">⚡ JavaScript</div>
-      <div class="skill-card fade-in">🧠 AI / ChatGPT API</div>
-      <div class="skill-card fade-in">📱 Flutter</div>
-      <div class="skill-card fade-in">🧩 Git / GitHub</div>
-      <div class="skill-card fade-in">🌐 Responsive Design</div>
-      <div class="skill-card fade-in">🕹 UI / UX</div>
+      <div class="skill-card card fade-in">💻 HTML5</div>
+      <div class="skill-card card fade-in">🎨 CSS3 / SCSS</div>
+      <div class="skill-card card fade-in">⚡ JavaScript</div>
+      <div class="skill-card card fade-in">🧠 AI / ChatGPT API</div>
+      <div class="skill-card card fade-in">📱 Flutter</div>
+      <div class="skill-card card fade-in">🧩 Git / GitHub</div>
+      <div class="skill-card card fade-in">🌐 Responsive Design</div>
+      <div class="skill-card card fade-in">🕹 UI / UX</div>
     </div>
   </section>
 
@@ -129,6 +203,5 @@ body {
     <p>© 2025 VibeDev Studio. Создано с ❤️ и вниманием к деталям.</p>
   </footer>
 
-  <script src="script.js?v=4"></script>
 </body>
 </html>
