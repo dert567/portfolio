@@ -1,183 +1,118 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
+/* --- Основные стили --- */
 body {
-  background-color: #0a0a0a;
-  color: #eaeaea;
-  line-height: 1.6;
-}
-
-/* --- HEADER --- */
-header {
-  text-align: center;
-  padding: 120px 20px;
-  background: linear-gradient(135deg, #111111, #1a1a1a);
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
   color: #fff;
-  box-shadow: 0 0 60px #00c3ff22;
+  background: radial-gradient(circle at top, #0a0a0a, #121212 60%, #1b1b1b);
+  overflow-x: hidden;
 }
 
-header h1 {
-  font-size: 3rem;
-  letter-spacing: 2px;
-  color: #00d4ff;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin: 10px 0 30px;
-  color: #b5b5b5;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 30px;
-  background: #00d4ff;
-  color: #0a0a0a;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s ease;
-}
-
-.btn:hover {
-  background: #00a8d6;
-  transform: scale(1.05);
-}
-
-/* --- SECTIONS --- */
-section {
+/* --- Общие отступы и анимация появления --- */
+section, header, footer {
   padding: 80px 20px;
   max-width: 1000px;
   margin: auto;
 }
 
-h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 40px;
-  color: #00d4ff;
-}
-
-/* --- ABOUT --- */
-#about p {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #bcbcbc;
-  max-width: 750px;
-  margin: auto;
-}
-
-/* --- PROJECTS --- */
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-
-.project-card {
-  background: #161616;
-  border-radius: 12px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 0 15px #00d4ff15;
-  transition: 0.3s;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px #00d4ff40;
-}
-
-.project-card h3 {
-  color: #00d4ff;
-  margin-bottom: 10px;
-}
-
-/* --- SERVICES --- */
-.services-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.service-card {
-  background: #161616;
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 15px #00d4ff15;
-  transition: 0.3s;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px #00d4ff40;
-}
-
-.service-card h3 {
-  color: #00d4ff;
-  margin-bottom: 10px;
-}
-
-.service-card .price {
-  color: #b5b5b5;
-  margin: 10px 0;
-}
-
-/* --- CONTACT --- */
-#contact p {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #bcbcbc;
-  margin-bottom: 20px;
-}
-
-#contact {
-  text-align: center;
-}
-
-/* --- FOOTER --- */
-footer {
-  text-align: center;
-  padding: 25px;
-  background: #0e0e0e;
-  color: #888;
-  font-size: 0.9rem;
-  border-top: 1px solid #1a1a1a;
-}
-
-/* --- FADE-IN ANIMATION --- */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 1s forwards;
-  animation-delay: 0.3s;
+  transform: translateY(30px);
+  animation: fadeInUp 1.2s ease-out forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.service-card .btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 25px;
-  background: #00d4ff;
-  color: #0a0a0a;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+/* --- Заголовки --- */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff;
 }
 
-.service-card .btn:hover {
-  background: #00a8d6;
-  transform: scale(1.05);
+h1 {
+  font-size: 3em;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-top: 50px;
+}
+
+/* --- Кнопки --- */
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: linear-gradient(45deg, #ff4d4d, #ff9966);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
+}
+
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 25px rgba(255, 150, 100, 0.7);
+  background: linear-gradient(45deg, #ff9966, #ffaa33);
+}
+
+/* --- Карточки проектов и услуг --- */
+.projects-container,
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.project-card,
+.service-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+.project-card:hover,
+.service-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.06);
+}
+
+/* --- Цены --- */
+.price {
+  font-weight: bold;
+  color: #ffaa33;
+  margin-top: 10px;
+}
+
+/* --- Футер --- */
+footer {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+  opacity: 0.8;
+}
+
+/* --- Плавное появление элементов при скролле --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
