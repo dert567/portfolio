@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6YZS4DENFZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6YZS4DENFZ');
-</script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,47 +87,14 @@
       transition: width 0.5s ease;
     }
     .btn:hover::after { width: 120%; }
-    .contact-form {
-      max-width: 420px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 20px;
-    }
-    .contact-form input, .contact-form textarea {
-      background: rgba(255,255,255,0.1);
-      border: none;
-      border-radius: 10px;
-      color: #fff;
-      padding: 12px;
-      font-size: 16px;
-      outline: none;
-      resize: none;
-    }
-    .contact-form button {
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
-      border: none;
-      border-radius: 40px;
-      padding: 12px;
-      font-size: 16px;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .contact-form button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255, 99, 71, 0.4);
-    }
+
     footer {
       text-align: center;
       padding: 20px;
       font-size: 14px;
       background: rgba(0,0,0,0.3);
     }
+
     @keyframes fadeDown { from { opacity:0; transform:translateY(-40px); } to { opacity:1; transform:translateY(0); } }
     @keyframes textGlow { from { text-shadow: 0 0 5px #ff6f61, 0 0 10px #ff4b2b; } to { text-shadow: 0 0 20px #ff6f61, 0 0 40px #ff4b2b; } }
     .fade-in { opacity:0; transform:translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -150,15 +108,30 @@
     <a href="#projects" class="btn">Мои работы ↓</a>
   </header>
 
+  <!-- ПРОЕКТЫ -->
   <section id="projects" class="fade-in">
     <h2>Мои проекты</h2>
     <div class="projects-container">
-      <div class="card"><h3>AI Landing</h3><p>Современный лендинг с анимацией и AI контентом.</p></div>
-      <div class="card"><h3>Music Vibe App</h3><p>Приложение с подбором музыки по настроению.</p></div>
-      <div class="card"><h3>CryptoTracker</h3><p>Отслеживание курсов криптовалют в реальном времени.</p></div>
+      <div class="card">
+        <h3>AI Landing</h3>
+        <a href="projects/ai-landing/index.html" class="btn" target="_blank">Посмотреть</a>
+      </div>
+      <div class="card">
+        <h3>Music Vibe App</h3>
+        <a href="projects/music-vibe-app/index.html" class="btn" target="_blank">Посмотреть</a>
+      </div>
+      <div class="card">
+        <h3>Crypto Tracker</h3>
+        <a href="projects/crypto-tracker/index.html" class="btn" target="_blank">Посмотреть</a>
+      </div>
+      <div class="card">
+        <h3>Бизнес Лендинг</h3>
+        <a href="projects/business-landing/index.html" class="btn" target="_blank">Посмотреть</a>
+      </div>
     </div>
   </section>
 
+  <!-- УСЛУГИ -->
   <section id="services" class="fade-in">
     <h2>Услуги</h2>
     <div class="services-container">
@@ -168,15 +141,13 @@
     </div>
   </section>
 
+  <!-- КОНТАКТЫ -->
   <section id="contact" class="fade-in">
     <h2>Контакты</h2>
-    <p>Оставь сообщение — и я свяжусь с тобой 🚀</p>
-    <form class="contact-form" id="tgForm">
-      <input type="text" id="name" placeholder="Ваше имя" required>
-      <textarea id="message" placeholder="Ваше сообщение" required></textarea>
-      <button type="submit">Отправить</button>
-    </form>
-    <div id="status" style="margin-top:10px;"></div>
+    <p>Напиши мне напрямую в Telegram — и я сразу отвечу 🚀</p>
+    <a href="https://t.me/dima_dev2" class="btn" target="_blank" rel="noopener noreferrer">
+      Написать в Telegram
+    </a>
   </section>
 
   <footer>
@@ -203,35 +174,6 @@
     };
     window.addEventListener('scroll', onScroll);
     onScroll();
-
-    // Отправка формы в Telegram
-    const token = "8243108926:AAH3ytiNNKxmf5SYTQfMVnBO4ObQLBFKRqc";
-    const chatId = "5076651431";
-    const form = document.getElementById('tgForm');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const message = document.getElementById('message').value;
-      const text = `📩 Новое сообщение с сайта:\n👤 Имя: ${name}\n💬 Сообщение: ${message}`;
-
-      try {
-        const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({ chat_id: chatId, text })
-        });
-        const data = await res.json();
-        if(data.ok){
-          document.getElementById('status').innerText = "✅ Сообщение отправлено!";
-          form.reset();
-        } else {
-          document.getElementById('status').innerText = `❌ Ошибка: ${data.description}`;
-        }
-      } catch(err){
-        document.getElementById('status').innerText = "❌ Ошибка при отправке.";
-      }
-    });
   </script>
 </body>
 </html>
