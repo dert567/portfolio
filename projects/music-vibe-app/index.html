@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Vibe App</title>
+  <style>
+    body { font-family:sans-serif; background:#121212; color:#fff; text-align:center; padding:50px;}
+    button { padding:10px 20px; margin:10px; background:#ff416c; color:#fff; border:none; border-radius:5px; cursor:pointer;}
+    audio { margin-top:20px; width:300px; }
+    a { color:#ff416c; text-decoration:none; display:block; margin-top:30px;}
+  </style>
+</head>
+<body>
+  <h1>Music Vibe App - Демо</h1>
+  <p>Выбирай настроение и слушай треки прямо здесь!</p>
+  <div>
+    <button onclick="playMusic('song1.mp3')">Расслабляющее</button>
+    <button onclick="playMusic('song2.mp3')">Энергичное</button>
+    <button onclick="playMusic('song3.mp3')">Меланхоличное</button>
+  </div>
+  <audio id="player" controls></audio>
+
+  <a href="../../index.html">← Назад</a>
+
+  <script>
+    function playMusic(file) {
+      const player = document.getElementById('player');
+      player.src = file; // в демо можно поставить фиктивные ссылки
+      player.play();
+    }
+  </script>
+</body>
+</html>
